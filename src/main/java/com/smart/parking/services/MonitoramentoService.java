@@ -5,6 +5,8 @@ import com.smart.parking.repository.MonitoramentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MonitoramentoService {
 
@@ -13,5 +15,8 @@ public class MonitoramentoService {
 
     public MonitoramentoVaga inserirEstadoVaga( MonitoramentoVaga monitoramentoVaga){
         return monitoramentoRepository.save(monitoramentoVaga);
+    }
+    public List<MonitoramentoVaga> exibirEstadoVaga(){
+        return monitoramentoRepository.findAll();
     }
 }
