@@ -2,11 +2,9 @@
 
 Tecnologias usadas:
 
-    Spring Boot
+    Spring MVC
     
     Banco de dados SQL Postgres
-
-    Angular
     
     
     
