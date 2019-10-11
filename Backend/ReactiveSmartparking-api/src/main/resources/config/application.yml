@@ -1,0 +1,27 @@
+logging:
+  level:
+    web: DEBUG
+
+spring:
+  application:
+    name: ReactiveSmartParking
+
+  profiles:
+      active: dev
+
+  devtools:
+    restart:
+        enabled: true
+    livereload:
+        enabled: true
+    add-properties: false
+
+  data.mongodb:
+      host: localhost
+      port: 27017
+      database: smartparking
+
+server:
+    port: 8081
+
+

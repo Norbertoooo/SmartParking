@@ -19,9 +19,15 @@ public class MonitoramentoResource {
     @Autowired
     public MonitoramentoService monitoramentoService;
 
+    @CrossOrigin
+    @GetMapping("/")
+    public  String paginaIncial(){
+        return "Pagina inicial";
+    }
+
     @PostMapping("/monitoramento")
-    public Mono inserir(@RequestBody MonitoramentoVaga monitoramentoVaga){
-        return monitoramentoService.inserirEstadoVaga(monitoramentoVaga);
+    public ResponseEntity<Mono> inserir(@RequestBody MonitoramentoVaga monitoramentoVaga){
+        return ResponseEntity.status(201).body(monitoramentoService.inserirEstadoVaga(monitoramentoVaga));
     }
 
     @CrossOrigin
