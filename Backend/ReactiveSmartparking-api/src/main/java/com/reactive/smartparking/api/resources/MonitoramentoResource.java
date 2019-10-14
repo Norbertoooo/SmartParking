@@ -9,9 +9,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
-import java.net.URI;
-import java.util.List;
-
 @RestController
 @RequestMapping("/api")
 public class MonitoramentoResource {
@@ -21,7 +18,7 @@ public class MonitoramentoResource {
 
     @CrossOrigin
     @GetMapping("/")
-    public  String paginaIncial(){
+    public String paginaIncial(){
         return "Pagina inicial";
     }
 
