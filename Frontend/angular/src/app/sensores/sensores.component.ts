@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SensorserviceService } from '../sensorservice.service';
+import { SensorserviceService } from './sensorservice.service';
 import {delay} from 'rxjs/operators';
 
 @Component({
@@ -15,13 +15,13 @@ export class SensoresComponent implements OnInit {
 
   ngOnInit() {
     this.listar();
-    // this.load();
+    // this.pageRefresh();
   }
 
   listar() {
     this.sensorserviceService.listar().subscribe(res => this.dados = res);
   }
-  load() {
+  pageRefresh() {
     location.reload();
   }
 

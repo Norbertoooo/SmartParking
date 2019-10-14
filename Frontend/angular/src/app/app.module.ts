@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SensoresComponent } from './sensores/sensores.component';
-import {SensorserviceService} from './sensorservice.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import {SensorserviceService} from './sensorservice.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [SensorserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
