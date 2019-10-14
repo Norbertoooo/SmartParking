@@ -8,5 +8,7 @@ Tecnologias usadas:
 
     Angular
     
+    Banco de dados NOSQL Mongodb
+    
     
     
