@@ -16,10 +16,9 @@ spring:
         enabled: true
     add-properties: false
 
-  data.mongodb:
-      host: localhost
-      port: 27017
-      database: smartparking
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:admin@smartparking-bzlwo.azure.mongodb.net/smartparking?retryWrites=true&w=majority
 
 server:
     port: 8081
