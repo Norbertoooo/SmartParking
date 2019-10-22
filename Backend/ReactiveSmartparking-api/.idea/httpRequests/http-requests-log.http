@@ -1,4 +1,189 @@
 GET http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-14T111032.200.json
+
+###
+
+POST http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-14T110612.201.json
+
+###
+
+POST http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-14T110611.201.json
+
+###
+
+GET http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-14T110606.200.json
+
+###
+
+POST http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-14T110601.201.json
+
+###
+
+GET http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T013010.200.json
+
+###
+
+GET http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T125040.200.json
+
+###
+
+POST http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T125027.201.json
+
+###
+
+POST http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T125026-1.201.json
+
+###
+
+POST http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T125026.201.json
+
+###
+
+POST http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T125025.201.json
+
+###
+
+POST http://localhost:8081/api/monitoramento
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T125023.201.json
+
+###
+
+GET http://localhost:8081/api/
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T124924.200.txt
+
+###
+
+GET http://localhost:8081/api
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T124916.404.json
+
+###
+
+GET http://localhost:8081/
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T124845.404.json
+
+###
+
+GET http://localhost:8081
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+<> 2019-10-12T124838.404.json
+
+###
+
+GET http://localhost:8080
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{ "nomeSensor": "esp",     "estadoVaga": 10.10 }
+
+###
+
+GET http://localhost:8081/api/monitoramento
 
 <> 2019-10-11T053327.200.json
 
