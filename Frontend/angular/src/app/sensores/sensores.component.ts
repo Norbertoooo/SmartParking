@@ -10,6 +10,8 @@ import {delay} from 'rxjs/operators';
 export class SensoresComponent implements OnInit {
   private seatConfig: any = null;
   private seatmap = [];
+  dados: Array<any>;
+  constructor(private sensorserviceService: SensorserviceService) { }
   
   private seatChartConfig = {
     showRowsLabel : true,
@@ -25,48 +27,17 @@ export class SensoresComponent implements OnInit {
     eventId : 0
   };
 
-  title = 'SmartParking';
-
-  dados: Array<any>;
-
-  constructor(private sensorserviceService: SensorserviceService) { }
-
   ngOnInit() {
     this.seatConfig = [
       {
-        "seat_price": 250,
         "seat_map": [
           {
             "seat_label": "A",
-            "layout": "g_____"
+            "layout": "ggggggggggg"
           },
           {
             "seat_label": "B",
-            "layout": "gg__gg"
-          },
-          {
-            "seat_label": "C",
-            "layout": "gg__gg"
-          },
-          {
-            "seat_label": "D",
-            "layout": "gg__gg"
-          },
-          {
-            "seat_label": "E",
-            "layout": "gg__gg"
-          },
-          {
-            "seat_label": "F",
-            "layout": "gg__gg"
-          },
-          {
-            "seat_label": "G",
-            "layout": "gg__gg"
-          },
-          {
-            "seat_label": "H",
-            "layout": "gggggg"
+            "layout": "ggggggggggg"
           }
         ]
       }
@@ -93,14 +64,11 @@ export class SensoresComponent implements OnInit {
           else
           {
             row_label += item_map[ item_map.length - 2].seat_label;
-          }
-          row_label += " : Rs. " + map_data[__counter].seat_price;
-          
+          }          
           item_map.forEach(map_element => {
             var mapObj = {
               "seatRowLabel" : map_element.seat_label,
               "seats" : [],
-              "seatPricingInformation" : row_label
             };
             row_label = "";
             var seatValArr = map_element.layout.split('');
@@ -112,7 +80,6 @@ export class SensoresComponent implements OnInit {
             seatValArr.forEach(item => {
               var seatObj = {
                 "key" : map_element.seat_label+"_"+totalItemCounter,
-                "price" : map_data[__counter]["seat_price"],
                 "status" : "available"
               };
                
@@ -140,27 +107,22 @@ export class SensoresComponent implements OnInit {
     this.listar();
     // this.pageRefresh();
     }
-  } public selectSeat( seatObject : any )
-  {
+  } 
+  public selectSeat( seatObject : any ){
     console.log( "Seat to block: " , seatObject );
-    if(seatObject.status == "available")
-    {
+    if(seatObject.status == "available"){
       seatObject.status = "booked";
       this.cart.selectedSeats.push(seatObject.seatLabel);
       this.cart.seatstoStore.push(seatObject.key);
-      this.cart.totalamount += seatObject.price;
     }
-    else if( seatObject.status = "booked" )
-    {
+    else if( seatObject.status = "booked" ){
       seatObject.status = "available";
       var seatIndex = this.cart.selectedSeats.indexOf(seatObject.seatLabel);
       if( seatIndex > -1)
       {
         this.cart.selectedSeats.splice(seatIndex , 1);
         this.cart.seatstoStore.splice(seatIndex , 1);
-        this.cart.totalamount -= seatObject.price;
       }
-      
     }
   }
 
