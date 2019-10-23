@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+// TODO: 23/10/2019 Implementar crud e endpoint que retorne apenas o ultimo dado
 
 @RestController
 @RequestMapping("/api")

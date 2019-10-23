@@ -1,20 +1,18 @@
 package com.reactive.smartparking.api.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+// TODO: 23/10/2019 Vereficar se a anotação @data esta funcionando
 
 @Document
-@EqualsAndHashCode @ToString @Getter @Setter
+@Data
 public class MonitoramentoVaga {
 
     @Id
     private String id;
     private String nomeSensor;
-    private Float estadoVaga;
+    private String estadoVaga;
 
 }
