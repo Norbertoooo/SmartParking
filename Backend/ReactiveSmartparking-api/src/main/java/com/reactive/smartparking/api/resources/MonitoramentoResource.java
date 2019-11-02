@@ -17,12 +17,6 @@ public class MonitoramentoResource {
     @Autowired
     public MonitoramentoService monitoramentoService;
 
-    @CrossOrigin
-    @GetMapping("/")
-    public String paginaIncial(){
-        return "Pagina inicial";
-    }
-
     @PostMapping("/monitoramento")
     public ResponseEntity<Mono> inserir(@RequestBody MonitoramentoVaga monitoramentoVaga){
         return ResponseEntity.status(201).body(monitoramentoService.inserirEstadoVaga(monitoramentoVaga));
@@ -32,6 +26,11 @@ public class MonitoramentoResource {
     @GetMapping("/monitoramento")
     public ResponseEntity<Flux> exibir(){
         return ResponseEntity.ok().body(monitoramentoService.exibirEstadoVaga());
+    }
+
+    @DeleteMapping("/monitoramento")
+    public Mono<Void> deletarTudo(){
+        return monitoramentoService.monitoramentoRepository.deleteAll();
     }
 
 }
