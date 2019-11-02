@@ -10,21 +10,27 @@
 #define ledAzul      13 
 
 Ultrasonic ultrasonic(TRIGGER_PIN, ECHO_PIN);
-const char* nome = "Vaga-A1";
+HTTPClient http;    //Declare object of class HTTPClient
+const String nome = "Vaga-A1";
 bool estadoVaga;
 int intervalo = 1000;
-const char* url = "http://192.168.1.103:8081/api/monitoramento";
+const String url = "http://192.168.1.103:8081/api/monitoramento";
+const String nomeDaRede = "Norte";
+const String senhaDaRede = "96427744"; 
+const float distanciaLimite = 30;
 
 void setup() {
   Serial.begin(115200);                                  //Serial connection
   pinMode(ledAzul, OUTPUT);
   pinMode(ledVerde, OUTPUT);
   pinMode(ledVermelho, OUTPUT);
-  WiFi.begin("Norte", "96427744");   //WiFi connection
+  WiFi.begin(nomeDaRede, senhaDaRede);   //WiFi connection
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
     delay(500);
-    Serial.println("Waiting for connection");
+    Serial.print("Conectando ao wifi: ");
+    Serial.println(nomeDaRede);
   }
+  Serial.println("Conexão com wifi estabelecida");
 }
  
 void loop() {
@@ -33,14 +39,14 @@ void loop() {
   distanciaEmCM = ultrasonic.convert(microsec, Ultrasonic::CM);
   Serial.print("CM: ");
   Serial.println(distanciaEmCM);
-  if(distanciaEmCM <= 30){
+  if(distanciaEmCM <= distanciaLimite){
     acendeLedVermelho();
     if(!estadoVaga){
       enviarEstadoDaVaga(distanciaEmCM);
       }
     estadoVaga = true;
   }
-  if(distanciaEmCM > 30){
+  if(distanciaEmCM > distanciaLimite){
     acendeLedVerde();
     if(estadoVaga){
       enviarEstadoDaVaga(distanciaEmCM);
@@ -69,19 +75,21 @@ void enviarEstadoDaVaga(float distanciaEmCM){
     JSONencoder["estadoVaga"] = distanciaEmCM;
     char JSONmessageBuffer[300];
     JSONencoder.prettyPrintTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
-
-    HTTPClient http;    //Declare object of class HTTPClient
+    
     http.begin(url);      //Specify request destination
     http.addHeader("Content-Type", "application/json");  //Specify content-type header
     int httpCode = http.POST(JSONmessageBuffer);   //Send the request
     String payload = http.getString();                  //Get the response payload
- 
+    
+    Serial.print("Codigo de retorno da requisicao: ");
     Serial.println(httpCode);   //Print HTTP return code
+    Serial.print("Corpo da resposta da requisicao: ");
     Serial.println(payload);    //Print request response payload
+    Serial.print("Json enviado: ");
     Serial.println(JSONmessageBuffer);
  
     http.end();  //Close connection     
   }else{
-    Serial.println("Error in WiFi connection");   
+    Serial.println("Erro na conexao com WiFi");   
   }
 }
