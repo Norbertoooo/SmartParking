@@ -13,6 +13,7 @@ Ultrasonic ultrasonic(TRIGGER_PIN, ECHO_PIN);
 const char* nome = "Vaga-A1";
 bool estadoVaga;
 int intervalo = 1000;
+const char* url = "http://192.168.1.103:8081/api/monitoramento";
 
 void setup() {
   Serial.begin(115200);                                  //Serial connection
@@ -32,14 +33,14 @@ void loop() {
   distanciaEmCM = ultrasonic.convert(microsec, Ultrasonic::CM);
   Serial.print("CM: ");
   Serial.println(distanciaEmCM);
-  if(distanciaEmCM <= 10){
+  if(distanciaEmCM <= 30){
     acendeLedVermelho();
     if(!estadoVaga){
       enviarEstadoDaVaga(distanciaEmCM);
       }
     estadoVaga = true;
   }
-  if(distanciaEmCM > 10){
+  if(distanciaEmCM > 30){
     acendeLedVerde();
     if(estadoVaga){
       enviarEstadoDaVaga(distanciaEmCM);
@@ -70,7 +71,7 @@ void enviarEstadoDaVaga(float distanciaEmCM){
     JSONencoder.prettyPrintTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
 
     HTTPClient http;    //Declare object of class HTTPClient
-    http.begin("http://192.168.1.107:8081/api/monitoramento");      //Specify request destination
+    http.begin(url);      //Specify request destination
     http.addHeader("Content-Type", "application/json");  //Specify content-type header
     int httpCode = http.POST(JSONmessageBuffer);   //Send the request
     String payload = http.getString();                  //Get the response payload
