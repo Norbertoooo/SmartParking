@@ -7,18 +7,32 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-// TODO: 23/10/2019 Implementar service para retornar apenas o ultimo dado
-
 @Service
-public class MonitoramentoService {
+public class MonitoramentoService  {
 
     @Autowired
     public MonitoramentoRepository monitoramentoRepository;
 
-    public Mono inserirEstadoVaga(MonitoramentoVaga monitoramentoVaga){
+    public Mono inserir(MonitoramentoVaga monitoramentoVaga) {
         return monitoramentoRepository.save(monitoramentoVaga);
     }
-    public Flux<MonitoramentoVaga> exibirEstadoVaga(){
+    public Flux<MonitoramentoVaga> exibirTudo(){
         return monitoramentoRepository.findAll();
     }
+    public Mono<MonitoramentoVaga> exibirPorId(String id){
+        return monitoramentoRepository.findById(id);
+    }
+    public Mono<Void> deletarPorId(String id){
+        return monitoramentoRepository.deleteById(id);
+    }
+    public Mono<Void> deletarTudo() {
+        return monitoramentoRepository.deleteAll();
+    }
+    public void atualizar(MonitoramentoVaga monitoramentoVagaNovo) {
+       Mono mono = monitoramentoRepository.save(monitoramentoVagaNovo);
+    }
+    public Mono<MonitoramentoVaga> estadoAtual() {
+        return exibirTudo().last();
+    }
+
 }
