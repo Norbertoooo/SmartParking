@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SensorserviceService } from './sensorservice.service';
+import { SensorService } from './sensor.service';
 
-describe('SensorserviceService', () => {
+describe('SensorService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: SensorserviceService = TestBed.get(SensorserviceService);
+    const service: SensorService = TestBed.get(SensorService);
     expect(service).toBeTruthy();
   });
 });

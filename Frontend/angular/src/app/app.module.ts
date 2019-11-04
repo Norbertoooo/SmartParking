@@ -7,12 +7,12 @@ import { TooltipModule } from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SensoresComponent } from './sensores/sensores.component';
+import { SensorComponent } from './componentes/sensor/sensor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SensoresComponent
+    SensorComponent,
   ],
   imports: [
     BrowserModule,
