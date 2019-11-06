@@ -1,6 +1,9 @@
 logging:
   level:
     web: DEBUG
+    org:
+      springframework:
+        data: DEBUG
 
 spring:
   application:
