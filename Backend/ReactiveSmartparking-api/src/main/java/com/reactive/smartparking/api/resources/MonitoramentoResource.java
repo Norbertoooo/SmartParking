@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 // todo Metodo put sem funcionar
 
 @RestController
@@ -31,27 +33,27 @@ public class MonitoramentoResource {
     }
     */
     @CrossOrigin
+    @GetMapping ("/monitoramento/sensores")
+    public ResponseEntity<List> listaDeSensores(){
+        return ResponseEntity.ok().body(monitoramentoService.listaDeSensores());
+    }
+
+    @CrossOrigin
     @GetMapping("/monitoramento")
     public ResponseEntity<Flux> consulta(){
         return ResponseEntity.ok().body(monitoramentoService.exibirTudo());
     }
 
     @CrossOrigin
-    @GetMapping("/monitoramento/atual")
-    public ResponseEntity<Mono> consultaDeEstadoAtual(){
-        return ResponseEntity.ok().body(monitoramentoService.estadoAtual());
+    @GetMapping("/monitoramento/atual/{nomeSensor}")
+    public ResponseEntity<Mono> consultaDeEstadoAtual(@PathVariable String nomeSensor){
+        return ResponseEntity.ok().body(monitoramentoService.estadoAtual(nomeSensor));
     }
 
     @CrossOrigin
     @GetMapping("/monitoramento/{id}")
     public ResponseEntity<Mono> consultaPorId(@PathVariable String id){
         return ResponseEntity.ok().body(monitoramentoService.exibirPorId(id));
-    }
-
-    @PutMapping("/monitoramento")
-    public ResponseEntity<Mono> atualizar(@RequestBody MonitoramentoVaga monitoramentoVagaAtualizado) {
-        monitoramentoService.atualizar(monitoramentoVagaAtualizado);
-        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/monitoramento")
