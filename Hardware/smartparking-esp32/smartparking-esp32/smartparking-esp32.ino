@@ -1,22 +1,22 @@
-#include <ESP8266HTTPClient.h>
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
+#include <HTTPClient.h>
 #include <Ultrasonic.h>
 #include <ArduinoJson.h>
 
-#define TRIGGER_PIN  4
-#define ECHO_PIN     5
-#define ledVermelho  14
-#define ledVerde     12
-#define ledAzul      13 
+#define TRIGGER_PIN  12
+#define ECHO_PIN     13
+#define ledVermelho  33
+#define ledVerde     25
+#define ledAzul      26 
 
 Ultrasonic ultrasonic(TRIGGER_PIN, ECHO_PIN);
 HTTPClient http;    //Declare object of class HTTPClient
-const String nome = "Vaga-A4";
+const String nome = "Vaga-A3";
 bool estadoVaga;
 int intervalo = 1000;
 const String url = "http://192.168.1.103:8081/api/monitoramento";
-const String nomeDaRede = "Norte";
-const String senhaDaRede = "96427744"; 
+const char* nomeDaRede = "Norte";
+const char* senhaDaRede = "96427744"; 
 const float distanciaLimite = 30;
 
 void setup() {
