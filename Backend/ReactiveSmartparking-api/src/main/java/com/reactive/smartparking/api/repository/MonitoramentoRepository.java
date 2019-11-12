@@ -9,5 +9,4 @@ import reactor.core.publisher.Flux;
 public interface MonitoramentoRepository extends ReactiveMongoRepository<MonitoramentoVaga, String> {
 
     Flux<MonitoramentoVaga> findAllByNomeSensor(String nomeSensor);
-
 }

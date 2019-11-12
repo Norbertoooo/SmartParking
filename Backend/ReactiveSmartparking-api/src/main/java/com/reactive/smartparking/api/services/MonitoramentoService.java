@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MonitoramentoService  {
@@ -23,7 +23,7 @@ public class MonitoramentoService  {
         return monitoramentoRepository.insert(monitoramentoVaga);
     }
 
-    public Flux<MonitoramentoVaga> exibirTudo(){
+    public Flux<MonitoramentoVaga> exibirTudo() {
         return monitoramentoRepository.findAll();
     }
 
@@ -43,12 +43,27 @@ public class MonitoramentoService  {
        return monitoramentoRepository.save(monitoramentoVagaNovo);
     }
 
-    public List<MonitoramentoVaga> listaDeSensores(){
-       return mongoTemplate.findDistinct("nomeSensor", MonitoramentoVaga.class, MonitoramentoVaga.class);
+    public Flux<MonitoramentoVaga> listaDeSensores() {
+        List<MonitoramentoVaga> lista = mongoTemplate.
+                findDistinct("nomeSensor", MonitoramentoVaga.class, MonitoramentoVaga.class);
+        return Flux.fromIterable(lista);
     }
 
     public Mono<MonitoramentoVaga> estadoAtual(String nomeSensor) {
-            return monitoramentoRepository.findAllByNomeSensor(nomeSensor).last();
+        return monitoramentoRepository.findAllByNomeSensor(nomeSensor).last();
+    }
+
+    public Mono todosEstadosAtuais() {
+
+        List<MonitoramentoVaga> inferno = mongoTemplate.findAll(MonitoramentoVaga.class);
+
+        Map<String,String> vai = new HashMap<String, String>();
+
+        for (MonitoramentoVaga monitoramentoVaga: inferno) {
+            vai.put(monitoramentoVaga.getNomeSensor(), monitoramentoVaga.getEstadoVaga());
+        }
+
+        return Mono.just(vai);
     }
 
 }

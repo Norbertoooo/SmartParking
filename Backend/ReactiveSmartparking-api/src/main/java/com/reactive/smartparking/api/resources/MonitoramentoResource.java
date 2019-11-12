@@ -34,8 +34,14 @@ public class MonitoramentoResource {
     */
     @CrossOrigin
     @GetMapping ("/monitoramento/sensores")
-    public ResponseEntity<List> listaDeSensores(){
+    public ResponseEntity<Flux> listaDeSensores(){
         return ResponseEntity.ok().body(monitoramentoService.listaDeSensores());
+    }
+
+    @CrossOrigin
+    @GetMapping("/monitoramento/atual")
+    public ResponseEntity<Mono> consultaDeTodosEstadosAtuais() {
+        return ResponseEntity.ok().body(monitoramentoService.todosEstadosAtuais());
     }
 
     @CrossOrigin
