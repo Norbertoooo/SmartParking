@@ -9,26 +9,44 @@ import { Sensor } from 'src/app/interfaces/sensor';
 })
 
 export class SensorComponent implements OnInit {
-  public sensor: Sensor[];
-  public estadoAtual: Sensor;
-  constructor(private sensorService: SensorService ) { }
+  public listaDeTodosEstados: Sensor[];
+  public estadoAtual: Map<string,string>;
+  public listaDeSensores: Array<String>;
+
+  constructor(private sensorService: SensorService ) {
+    this.getlistaDeTodosSensores();
+    this.listarTodosEstados();
+    this.getEstadoAtual();
+  }
 
   ngOnInit() {
-    this.getListaSensores();
-    this.getEstadoAtual()
   }
 
-  getListaSensores() {
-    this.sensorService.listarSensores()
-    .subscribe((sensor: Sensor[]) => {
-      this.sensor = sensor;
-    });
-  }
-  getEstadoAtual() {
-    this.sensorService.estadoAtual().
-    subscribe((sensor: Sensor) =>{
-      this.estadoAtual = sensor;
-      }
+
+  listarTodosEstados() {
+    this.sensorService.listarTodosEstados().
+    subscribe((sensor: Sensor[]) => {
+      this.listaDeTodosEstados = sensor;
+    }, error => {
+      console.log(error);
+    }
     );
   }
+
+  getEstadoAtual() {
+    this.sensorService.estadoAtual().
+    subscribe((sensor: Map<string,string>) => {
+      this.estadoAtual = sensor;
+      console.log(this.estadoAtual);
+    }
+    );
+  }
+
+  getlistaDeTodosSensores(){
+    this.sensorService.listarTodosSensores().
+    subscribe((coisa: Array<string>) => {
+      this.listaDeSensores = coisa;
+    });
+  }
+
 }

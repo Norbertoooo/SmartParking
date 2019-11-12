@@ -10,14 +10,20 @@ import { environment } from 'src/environments/environment';
 export class SensorService {
   constructor(private http: HttpClient) { }
 
-  listarSensores(): Observable<Sensor[]> {
+  listarTodosEstados(): Observable<Sensor[]> {
     const url = `${environment.apiUrl}/monitoramento`;
     return this.http.get<Sensor[]>(url);
   }
 
-  estadoAtual(): Observable<Sensor> {
+  estadoAtual(): Observable<Map<string,string>> {
     const url = `${environment.apiUrl}/monitoramento/atual`;
-    return this.http.get<Sensor>(url);
+    //const urlteste = `${environment.apiUrl}/monitoramento/atual/Vaga-A1`;
+    return this.http.get<Map<string,string>>(url);
+  }
+
+  listarTodosSensores(): Observable<[]>{
+    const url = `${environment.apiUrl}/monitoramento/sensores`;
+    return this.http.get<[]>(url);
   }
 
 }
