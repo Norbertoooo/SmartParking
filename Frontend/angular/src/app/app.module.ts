@@ -8,7 +8,7 @@ import { TooltipModule } from 'ngx-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SensorComponent } from './componentes/sensor/sensor.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from '@angular/forms';
 import { FooterComponent } from './componentes/footer/footer.component';
 
 @NgModule({

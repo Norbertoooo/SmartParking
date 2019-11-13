@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { SensorService } from 'src/app/services/sensor.service';
-import { Sensor } from 'src/app/interfaces/sensor';
+import {Component, OnInit} from '@angular/core';
+import {SensorService} from 'src/app/services/sensor.service';
+import {Sensor} from 'src/app/interfaces/sensor';
 
 @Component({
   selector: 'app-sensor',
@@ -10,41 +10,38 @@ import { Sensor } from 'src/app/interfaces/sensor';
 
 export class SensorComponent implements OnInit {
   public listaDeTodosEstados: Sensor[];
-  public estadoAtual: Map<string,string>;
-  public listaDeSensores: Array<String>;
+  public estadoAtual: Map<string, string>;
+  public listaDeSensores: Array<string>;
 
-  constructor(private sensorService: SensorService ) {
+  constructor(private sensorService: SensorService) {
+  }
+
+  ngOnInit() {
     this.getlistaDeTodosSensores();
     this.listarTodosEstados();
     this.getEstadoAtual();
   }
 
-  ngOnInit() {
-  }
-
 
   listarTodosEstados() {
-    this.sensorService.listarTodosEstados().
-    subscribe((sensor: Sensor[]) => {
-      this.listaDeTodosEstados = sensor;
-    }, error => {
-      console.log(error);
-    }
+    this.sensorService.listarTodosEstados().subscribe((sensor: Sensor[]) => {
+        this.listaDeTodosEstados = sensor;
+      }, error => {
+        console.log(error);
+      }
     );
   }
 
   getEstadoAtual() {
-    this.sensorService.estadoAtual().
-    subscribe((sensor: Map<string,string>) => {
-      this.estadoAtual = sensor;
-      console.log(this.estadoAtual);
-    }
+    this.sensorService.estadoAtual().subscribe((sensor: Map<string, string>) => {
+        this.estadoAtual = sensor;
+        console.log(this.estadoAtual);
+      }
     );
   }
 
-  getlistaDeTodosSensores(){
-    this.sensorService.listarTodosSensores().
-    subscribe((coisa: Array<string>) => {
+  getlistaDeTodosSensores() {
+    this.sensorService.listarTodosSensores().subscribe((coisa: Array<string>) => {
       this.listaDeSensores = coisa;
     });
   }

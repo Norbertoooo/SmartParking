@@ -17,7 +17,7 @@ export class SensorService {
 
   estadoAtual(): Observable<Map<string,string>> {
     const url = `${environment.apiUrl}/monitoramento/atual`;
-    //const urlteste = `${environment.apiUrl}/monitoramento/atual/Vaga-A1`;
+    // const urlteste = `${environment.apiUrl}/monitoramento/atual/Vaga-A1`;
     return this.http.get<Map<string,string>>(url);
   }
 
