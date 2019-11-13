@@ -2,16 +2,20 @@ package com.reactive.smartparking.api.services;
 
 import com.reactive.smartparking.api.domain.MonitoramentoVaga;
 import com.reactive.smartparking.api.repository.MonitoramentoRepository;
+import com.reactive.smartparking.api.services.dto.MonitoramentoVagaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
-public class MonitoramentoService  {
+public class MonitoramentoService {
 
     @Autowired
     public MonitoramentoRepository monitoramentoRepository;
@@ -27,11 +31,11 @@ public class MonitoramentoService  {
         return monitoramentoRepository.findAll();
     }
 
-    public Mono<MonitoramentoVaga> exibirPorId(String id){
+    public Mono<MonitoramentoVaga> exibirPorId(String id) {
         return monitoramentoRepository.findById(id);
     }
 
-    public Mono<Void> deletarPorId(String id){
+    public Mono<Void> deletarPorId(String id) {
         return monitoramentoRepository.deleteById(id);
     }
 
@@ -40,7 +44,7 @@ public class MonitoramentoService  {
     }
 
     public Mono<MonitoramentoVaga> atualizar(MonitoramentoVaga monitoramentoVagaNovo) {
-       return monitoramentoRepository.save(monitoramentoVagaNovo);
+        return monitoramentoRepository.save(monitoramentoVagaNovo);
     }
 
     public Flux<MonitoramentoVaga> listaDeSensores() {
@@ -53,17 +57,27 @@ public class MonitoramentoService  {
         return monitoramentoRepository.findAllByNomeSensor(nomeSensor).last();
     }
 
-    public Mono todosEstadosAtuais() {
+    public Flux todosEstadosAtuais() {
 
         List<MonitoramentoVaga> inferno = mongoTemplate.findAll(MonitoramentoVaga.class);
 
-        Map<String,String> vai = new HashMap<String, String>();
+        Map<String, String> vai = new HashMap<String, String>();
+        List<MonitoramentoVagaDTO> vagas = new ArrayList<>();
 
-        for (MonitoramentoVaga monitoramentoVaga: inferno) {
+        for (MonitoramentoVaga monitoramentoVaga : inferno) {
             vai.put(monitoramentoVaga.getNomeSensor(), monitoramentoVaga.getEstadoVaga());
         }
 
-        return Mono.just(vai);
+
+        for (String sensor : vai.keySet()) {
+            MonitoramentoVagaDTO vaga = new MonitoramentoVagaDTO();
+            vaga.setNomeSensor(sensor);
+            vaga.setEstadoVaga(vai.get(sensor));
+
+            vagas.add(vaga);
+        }
+
+        return Flux.fromIterable(vagas);
     }
 
 }
