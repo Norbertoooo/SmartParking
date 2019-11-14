@@ -11,7 +11,19 @@
       </div>
     </div>
   </section>
+</article>
 
+<article class="container-vagas">
+  <h3>Lista de vagas: </h3>
+  <section class="row">
+    <div *ngFor="let x of listaDeSensores">
+      <ul>
+        <li>
+          <h5>{{x}}</h5>
+        </li>
+      </ul>
+    </div>
+  </section>
 </article>
 
 <article class="container-vagas">
@@ -28,18 +40,6 @@
   </section>
 </article>
 
-<article class="container-vagas">
-  <h3>Lista de vagas: </h3>
-  <section class="row">
-    <div *ngFor="let x of listaDeSensores">
-      <ul>
-        <li>
-          <h5>{{x}}</h5>
-        </li>
-      </ul>
-    </div>
-  </section>
-</article>
 
 
 
