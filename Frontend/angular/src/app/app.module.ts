@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { SensorComponent } from './componentes/sensor/sensor.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SensorComponent,
     FooterComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

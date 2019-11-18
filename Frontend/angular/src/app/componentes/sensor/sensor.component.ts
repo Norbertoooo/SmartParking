@@ -17,9 +17,9 @@ export class SensorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getlistaDeTodosSensores();
-    this.listarTodosEstados();
     this.getEstadoAtual();
+    this.listarTodosEstados();
+    this.getlistaDeTodosSensores();
   }
 
 
@@ -35,7 +35,6 @@ export class SensorComponent implements OnInit {
   getEstadoAtual() {
     this.sensorService.estadoAtual().subscribe((sensor: Map<string, string>) => {
         this.estadoAtual = sensor;
-        console.log(this.estadoAtual);
       }
     );
   }

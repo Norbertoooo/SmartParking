@@ -15,15 +15,19 @@ export class SensorService {
     return this.http.get<Sensor[]>(url);
   }
 
-  estadoAtual(): Observable<Map<string,string>> {
+  estadoAtual(): Observable<Map<string, string>> {
     const url = `${environment.apiUrl}/monitoramento/atual`;
-    // const urlteste = `${environment.apiUrl}/monitoramento/atual/Vaga-A1`;
-    return this.http.get<Map<string,string>>(url);
+    return this.http.get<Map<string, string>>(url);
   }
 
-  listarTodosSensores(): Observable<[]>{
+  listarTodosSensores(): Observable<[]> {
     const url = `${environment.apiUrl}/monitoramento/sensores`;
     return this.http.get<[]>(url);
+  }
+
+  deletarTodosRegistros(): Observable<any> {
+    const url = `${environment.apiUrl}/monitoramento`;
+    return this.http.delete(url);
   }
 
 }
