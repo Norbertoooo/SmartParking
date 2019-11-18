@@ -8,11 +8,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class MonitoramentoService {
@@ -43,14 +39,10 @@ public class MonitoramentoService {
         return monitoramentoRepository.deleteAll();
     }
 
-    public Mono<MonitoramentoVaga> atualizar(MonitoramentoVaga monitoramentoVagaNovo) {
-        return monitoramentoRepository.save(monitoramentoVagaNovo);
-    }
-
     public Flux<MonitoramentoVaga> listaDeSensores() {
-        List<MonitoramentoVaga> lista = mongoTemplate.
+        List<MonitoramentoVaga> listaSensores = mongoTemplate.
                 findDistinct("nomeSensor", MonitoramentoVaga.class, MonitoramentoVaga.class);
-        return Flux.fromIterable(lista);
+        return Flux.fromIterable(listaSensores);
     }
 
     public Mono<MonitoramentoVaga> estadoAtual(String nomeSensor) {
@@ -61,7 +53,8 @@ public class MonitoramentoService {
 
         List<MonitoramentoVaga> inferno = mongoTemplate.findAll(MonitoramentoVaga.class);
 
-        Map<String, String> vai = new HashMap<String, String>();
+        Map<String, String> vai = new HashMap<>();
+
         List<MonitoramentoVagaDTO> vagas = new ArrayList<>();
 
         for (MonitoramentoVaga monitoramentoVaga : inferno) {

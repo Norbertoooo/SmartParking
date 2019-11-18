@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
-// todo Metodo put sem funcionar
-
 @RestController
 @RequestMapping("/api")
 public class MonitoramentoResource {
@@ -20,55 +16,42 @@ public class MonitoramentoResource {
     public MonitoramentoService monitoramentoService;
 
     @PostMapping("/monitoramento")
-    public ResponseEntity<Mono> inserir(@RequestBody MonitoramentoVaga monitoramentoVaga){
+    public ResponseEntity<Mono> inserir(@RequestBody MonitoramentoVaga monitoramentoVaga) {
         return ResponseEntity.status(201).body(monitoramentoService.inserir(monitoramentoVaga));
     }
 
-    // TODO: 04/11/2019 pesquisar mais sobre "text/event-stream"
-    /*
-    @CrossOrigin
-    @GetMapping(value = "/monitoramento/live", produces = "text/event-stream")
-    public ResponseEntity<Flux> liveconsulta(){
-        return ResponseEntity.ok().body(monitoramentoService.exibirTudo());
-    }
-    */
-    @CrossOrigin
-    @GetMapping ("/monitoramento/sensores")
-    public ResponseEntity<Flux> listaDeSensores(){
+    @CrossOrigin @GetMapping ("/monitoramento/sensores")
+    public ResponseEntity<Flux> listaDeSensores() {
         return ResponseEntity.ok().body(monitoramentoService.listaDeSensores());
     }
 
-    @CrossOrigin
-    @GetMapping("/monitoramento/atual")
+    @CrossOrigin @GetMapping("/monitoramento/atual")
     public ResponseEntity<Flux> consultaDeTodosEstadosAtuais() {
         return ResponseEntity.ok().body(monitoramentoService.todosEstadosAtuais());
     }
 
-    @CrossOrigin
-    @GetMapping("/monitoramento")
+    @CrossOrigin @GetMapping("/monitoramento")
     public ResponseEntity<Flux> consulta(){
         return ResponseEntity.ok().body(monitoramentoService.exibirTudo());
     }
 
-    @CrossOrigin
-    @GetMapping("/monitoramento/atual/{nomeSensor}")
-    public ResponseEntity<Mono> consultaDeEstadoAtual(@PathVariable String nomeSensor){
+    @CrossOrigin @GetMapping("/monitoramento/atual/{nomeSensor}")
+    public ResponseEntity<Mono> consultaDeEstadoAtual(@PathVariable String nomeSensor) {
         return ResponseEntity.ok().body(monitoramentoService.estadoAtual(nomeSensor));
     }
 
-    @CrossOrigin
-    @GetMapping("/monitoramento/{id}")
-    public ResponseEntity<Mono> consultaPorId(@PathVariable String id){
+    @CrossOrigin @GetMapping("/monitoramento/{id}")
+    public ResponseEntity<Mono> consultaPorId(@PathVariable String id) {
         return ResponseEntity.ok().body(monitoramentoService.exibirPorId(id));
     }
 
     @DeleteMapping("/monitoramento")
-    public ResponseEntity<Mono> deletarTudo(){
+    public ResponseEntity<Mono> deletarTudo() {
         return ResponseEntity.status(204).body(monitoramentoService.deletarTudo());
     }
 
     @DeleteMapping("/monitoramento/{id}")
-    public ResponseEntity<Mono> deletarPorId(@PathVariable String id){
+    public ResponseEntity<Mono> deletarPorId(@PathVariable String id) {
         return ResponseEntity.status(204).body(monitoramentoService.deletarPorId(id));
     }
 
