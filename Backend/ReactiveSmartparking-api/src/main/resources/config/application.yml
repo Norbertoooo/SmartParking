@@ -10,7 +10,7 @@ spring:
     name: ReactiveSmartParking
 
   profiles:
-      active: dev
+    active: dev
 
   devtools:
     restart:
@@ -21,12 +21,16 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb+srv://admin:admin@smartparking-bzlwo.azure.mongodb.net/smartparking?retryWrites=true&w=majority
+      #   uri: mongodb+srv://admin:admin@smartparking-bzlwo.azure.mongodb.net/smartparking?retryWrites=true&w=majority
+      host: localhost
+      port: 27017
+      password: mongodb
+      username: mongodb
+      authentication-database: admin
 
 server:
-    port: 8081
+  port: 8081
 
 # TODO docker run -p 8081:8081 -itd --name smartparking-api smartparking-api:1.0.0-SNAPSHOT --network="host"
 # TODO mvnw clean package docker:build
 # TODO mvnw clean install
-
