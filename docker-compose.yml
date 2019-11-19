@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  api:
+    build:
+      context: Backend\ReactiveSmartparking-api\target\docker
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongodb
+      MONGO_INITDB_ROOT_PASSWORD: mongodb
+    ports:
+      - "27017:27017"
