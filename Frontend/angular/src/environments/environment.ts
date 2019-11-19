@@ -1,5 +1,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://reactivesmartparking.herokuapp.com/api'
+  apiUrl: 'http://localhost:8081/api'
 };
