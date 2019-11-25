@@ -1,5 +1,13 @@
 ## SmartParking
 
+Recursos Necessários:
+    
+    Node js lts - https://nodejs.org/en/
+    jdk 8 - https://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html
+    git - https://git-scm.com/
+    docker e docker compose - https://www.docker.com/get-started
+
+
 Para clonar o repositorio:
     
     git clone https://github.com/Norbertoooo/SmartParking.git
@@ -28,11 +36,6 @@ Para criar um container da api:
     cd Backend\ReactiveSmartparking-api
     mvnw clean package docker:build
     docker run -p 8081:8081 -itd --name smartparking-api smartparking-api:1.0.0-SNAPSHOT --network="host"
-
-Para criar 
-
-
-
 
 Tecnologias usadas:
 
