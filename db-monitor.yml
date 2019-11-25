@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  smartparking-db:
+    container_name: smartparking-db
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongodb
+      MONGO_INITDB_ROOT_PASSWORD: mongodb
+    ports:
+        - "27017:27017"
+  smartparking-monitor:
+    container_name: smartparking-monitor
+    build:
+      context: Frontend\angular
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
