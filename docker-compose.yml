@@ -24,6 +24,20 @@ services:
     - smartparking-db
     networks:
       - smartparking-network
+      
+  smartparking-monitor:
+    container_name: smartparking-monitor
+    build:
+      context: Frontend\angular
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - smartparking-api
+    links:
+      - smartparking-api
+    networks: 
+      - smartparking-network
 
 networks:
   smartparking-network:
