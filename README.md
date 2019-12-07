@@ -12,8 +12,10 @@ Para clonar o repositorio:
     
     git clone https://github.com/Norbertoooo/SmartParking.git
 
-Para executar docker compose com todos serviços (Banco, monitor, api):
+Para executar docker compose com todos serviços (Banco, Monitor, Api):
     
+    cd Backend\ReactiveSmartparking-api
+    mvnw clean package docker:build
     docker-compose -f docker-compose.yml up -d
 
 Para iniciar smartparking-api pelo console:
