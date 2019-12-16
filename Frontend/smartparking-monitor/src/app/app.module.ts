@@ -11,6 +11,8 @@ import { SensorComponent } from './componentes/sensor/sensor.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { HistoricoComponent } from './componentes/historico/historico.component';
+import {HistoricoModule} from './componentes/historico/historico.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
     SensorComponent,
     FooterComponent,
     NavbarComponent,
+    HistoricoComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
     HttpClientModule,
     NgbModule,
     TooltipModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HistoricoModule
   ],
   bootstrap: [AppComponent]
 })

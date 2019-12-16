@@ -1,0 +1,15 @@
+<article class="container-vagas">
+  <h3>Histórico de alterações: </h3>
+  <section class="row">
+    <div *ngFor="let item of listaDeTodosEstados">
+        <div class="vaga-ocupada" *ngIf="item.estadoVaga <= 30 ">
+          <h5>{{ item.nomeSensor }} - {{ item.estadoVaga }}</h5>
+          <i id="ocupado" class="fa fa-car fa-3x">  </i>
+        </div>
+        <div class="vaga-disponivel" *ngIf="item.estadoVaga > 30">
+          <h5>{{ item.nomeSensor }} - {{ item.estadoVaga }}</h5>
+          <i id="livre" class="fa fa-car fa-3x"> </i>
+        </div>
+    </div>
+  </section>
+</article>

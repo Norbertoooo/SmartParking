@@ -1,0 +1,47 @@
+.container-vagas
+{
+  margin: 20px;
+  padding: 10px;
+  border-color: #336699;
+  border-style: solid;
+  border-radius: 20px;
+}
+
+.vaga-ocupada
+{
+  line-height: 25px;
+  text-align: center;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 7px;
+  font-size: 15px;
+  border: groove #9E0000;
+}
+
+.vaga-disponivel
+{
+  line-height: 25px;
+  text-align: center;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 7px;
+  border: groove green;
+  font-size: 15px;
+}
+
+#ocupado
+{
+  line-height: 25px;
+  padding: 5px;
+  margin: 10px;
+  color: #9E0000;
+}
+
+#livre
+{
+  line-height: 25px;
+  padding: 5px;
+  margin: 10px;
+  color: seagreen;
+}
+

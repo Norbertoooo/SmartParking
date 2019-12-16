@@ -1,14 +1,18 @@
 <article class="container-vagas" >
   <h3>Estado Atual: </h3>
-
   <section class="row">
     <div *ngFor="let item of estadoAtual">
+
       <div class="vaga-ocupada" *ngIf="item.estadoVaga <= 30 ">
-        {{ item.nomeSensor }} {{ item.estadoVaga }}
+        <h5>{{ item.nomeSensor }}</h5>
+        <i id="ocupado" class="fa fa-car fa-3x"> </i>
       </div>
+
       <div class="vaga-disponivel" *ngIf="item.estadoVaga > 30">
-        {{ item.nomeSensor }} {{ item.estadoVaga }}
+        <h5>{{ item.nomeSensor }}</h5>
+        <i id="livre" class="fa fa-car fa-3x"> </i>
       </div>
+
     </div>
   </section>
 </article>
@@ -16,26 +20,12 @@
 <article class="container-vagas">
   <h3>Lista de vagas: </h3>
   <section class="row">
-    <div *ngFor="let x of listaDeSensores">
+    <div *ngFor="let sensor of listaDeSensores">
       <ul>
         <li>
-          <h5>{{x}}</h5>
+          <h5>{{sensor}}</h5>
         </li>
       </ul>
-    </div>
-  </section>
-</article>
-
-<article class="container-vagas">
-  <h3>Todas alterações de estado: </h3>
-  <section class="row">
-    <div *ngFor="let item of listaDeTodosEstados">
-        <div class="vaga-ocupada" *ngIf="item.estadoVaga <= 30 ">
-          {{ item.nomeSensor }} {{ item.estadoVaga }}
-        </div>
-        <div class="vaga-disponivel" *ngIf="item.estadoVaga > 30">
-          {{ item.nomeSensor }} {{ item.estadoVaga }}
-        </div>
     </div>
   </section>
 </article>
