@@ -28,7 +28,7 @@ services:
   smartparking-monitor:
     container_name: smartparking-monitor
     build:
-      context: Frontend\angular
+      context: Frontend\smartparking-monitor
       dockerfile: Dockerfile
     ports:
       - "4200:80"
