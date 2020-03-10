@@ -16,10 +16,9 @@ public class MonitoramentoService {
     @Autowired
     public MonitoramentoRepository monitoramentoRepository;
 
-    @Autowired
     MongoTemplate mongoTemplate;
 
-    public Mono inserir(MonitoramentoVaga monitoramentoVaga) {
+    public Mono<MonitoramentoVaga> inserir(MonitoramentoVaga monitoramentoVaga) {
         return monitoramentoRepository.insert(monitoramentoVaga);
     }
 
@@ -49,28 +48,28 @@ public class MonitoramentoService {
         return monitoramentoRepository.findAllByNomeSensor(nomeSensor).last();
     }
 
-    public Flux todosEstadosAtuais() {
+    public Flux<MonitoramentoVagaDTO> todosEstadosAtuais() {
 
-        List<MonitoramentoVaga> inferno = mongoTemplate.findAll(MonitoramentoVaga.class);
+        List<MonitoramentoVaga> listaDeMonitoramento = mongoTemplate.findAll(MonitoramentoVaga.class);
 
-        Map<String, String> vai = new HashMap<>();
+        Map<String, String> mapDeMonitoramento = new HashMap<>();
 
-        List<MonitoramentoVagaDTO> vagas = new ArrayList<>();
+        List<MonitoramentoVagaDTO> listaDeVagas = new ArrayList<>();
 
-        for (MonitoramentoVaga monitoramentoVaga : inferno) {
-            vai.put(monitoramentoVaga.getNomeSensor(), monitoramentoVaga.getEstadoVaga());
+        for (MonitoramentoVaga monitoramentoVaga : listaDeMonitoramento) {
+            mapDeMonitoramento.put(monitoramentoVaga.getNomeSensor(), monitoramentoVaga.getEstadoVaga());
         }
 
 
-        for (String sensor : vai.keySet()) {
+        for (String sensor : mapDeMonitoramento.keySet()) {
             MonitoramentoVagaDTO vaga = new MonitoramentoVagaDTO();
             vaga.setNomeSensor(sensor);
-            vaga.setEstadoVaga(vai.get(sensor));
+            vaga.setEstadoVaga(mapDeMonitoramento.get(sensor));
 
-            vagas.add(vaga);
+            listaDeVagas.add(vaga);
         }
 
-        return Flux.fromIterable(vagas);
+        return Flux.fromIterable(listaDeVagas);
     }
 
 }

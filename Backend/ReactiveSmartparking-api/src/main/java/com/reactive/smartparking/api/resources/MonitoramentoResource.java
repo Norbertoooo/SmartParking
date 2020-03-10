@@ -3,6 +3,7 @@ package com.reactive.smartparking.api.resources;
 import com.reactive.smartparking.api.domain.MonitoramentoVaga;
 import com.reactive.smartparking.api.services.MonitoramentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -17,7 +18,7 @@ public class MonitoramentoResource {
 
     @PostMapping("/monitoramento")
     public ResponseEntity<Mono> inserir(@RequestBody MonitoramentoVaga monitoramentoVaga) {
-        return ResponseEntity.status(201).body(monitoramentoService.inserir(monitoramentoVaga));
+        return ResponseEntity.status(HttpStatus.CREATED).body(monitoramentoService.inserir(monitoramentoVaga));
     }
 
     @CrossOrigin @GetMapping ("/monitoramento/sensores")
@@ -47,12 +48,12 @@ public class MonitoramentoResource {
 
     @DeleteMapping("/monitoramento")
     public ResponseEntity<Mono> deletarTudo() {
-        return ResponseEntity.status(204).body(monitoramentoService.deletarTudo());
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(monitoramentoService.deletarTudo());
     }
 
     @DeleteMapping("/monitoramento/{id}")
     public ResponseEntity<Mono> deletarPorId(@PathVariable String id) {
-        return ResponseEntity.status(204).body(monitoramentoService.deletarPorId(id));
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(monitoramentoService.deletarPorId(id));
     }
 
 
